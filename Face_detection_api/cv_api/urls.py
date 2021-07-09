@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from face_detector import views
-# from django.urls import patterns, include, url
+
 
 
 urlpatterns = [
