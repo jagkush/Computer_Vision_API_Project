@@ -10,15 +10,11 @@ import os
 
 # Create your views here.
 
-pathf= 'E:\SOFTWARE ENG\django\cv_api'
+pathf= '../cascades' # point to the cascade folder
 
 # define the path to the face detector
-# FACE_DETECTOR_PATH = "{base_path}/cascades/haarcascade_frontalface_default.xml".format(
-# 	base_path=os.path.abspath(os.path.dirname(__file__)))
-FACE_DETECTOR_PATH = "{}\cascades\haarcascade_frontalface_default.xml".format(
+FACE_DETECTOR_PATH = "{}/haarcascade_frontalface_default.xml".format(
 	pathf)
-
-# FACE_DETECTOR_PATH = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 @csrf_exempt
 def detect(request):
@@ -45,7 +41,7 @@ def detect(request):
 		image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 		detector = cv2.CascadeClassifier(FACE_DETECTOR_PATH)
 		rects = detector.detectMultiScale(image, scaleFactor=1.1, minNeighbors=5,
-			minSize=(30, 30), flags=cv2.CASCADE_SCALE_IMAGE) #, flags=cv2.CASCADE_SCALE_IMAGE#flags=cv2.cv.CV_HAAR_SCALE_IMAGE
+			minSize=(30, 30), flags=cv2.CASCADE_SCALE_IMAGE) 
 			
 		# construct a list of bounding boxes from the detection
 		rects = [(int(x), int(y), int(x + w), int(y + h)) for (x, y, w, h) in rects]
